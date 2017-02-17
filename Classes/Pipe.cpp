@@ -44,7 +44,7 @@ void Pipe::SpawnPipe( cocos2d::Layer *layer )
     bottomPipe->setPhysicsBody( bottomPipeBody );
     
     topPipe->setPosition( Point( visibleSize.width + topPipe->getContentSize( ).width + origin.x, topPipePosition ) );
-    bottomPipe->setPosition( Point( topPipe->getPositionX(), topPipePosition - ( Sprite::create( "Android/Ball.png" )->getContentSize( ).height * PIPE_GAP ) - topPipe->getContentSize().height ) );
+    bottomPipe->setPosition( Point( topPipe->getPositionX(), topPipePosition - ( Sprite::create( "Android/Player.png" )->getContentSize( ).height * PIPE_GAP ) - topPipe->getContentSize().height ) );
     
     layer->addChild( topPipe );
     layer->addChild( bottomPipe );

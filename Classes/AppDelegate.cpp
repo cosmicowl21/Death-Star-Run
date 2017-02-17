@@ -42,6 +42,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         resDirOrders.push_back( "iphonehd5" );
         resDirOrders.push_back( "iphonehd" );
         resDirOrders.push_back( "iphone" );
+		resDirOrders.push_back("Android");//
         
         if ( true == IS_LANDSCAPE )
         {
@@ -58,7 +59,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         resDirOrders.push_back( "iphonehd5" );
         resDirOrders.push_back( "iphonehd" );
         resDirOrders.push_back( "iphone" );
-        
+		resDirOrders.push_back("Android");
         if ( true == IS_LANDSCAPE )
         {
             glview->setDesignResolutionSize( 1024, 768, ResolutionPolicy::NO_BORDER );
@@ -73,7 +74,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         resDirOrders.push_back("iphonehd5");
         resDirOrders.push_back("iphonehd");
         resDirOrders.push_back("iphone");
-        
+		resDirOrders.push_back("Android");
         if ( true == IS_LANDSCAPE )
         {
             glview->setDesignResolutionSize( 1136, 640, ResolutionPolicy::NO_BORDER );
@@ -87,7 +88,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     {
         resDirOrders.push_back( "iphonehd" );
         resDirOrders.push_back( "iphone" );
-        
+		resDirOrders.push_back("Android");
         if ( true == IS_LANDSCAPE )
         {
             glview->setDesignResolutionSize( 960, 640, ResolutionPolicy::NO_BORDER );
@@ -103,7 +104,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         {
             resDirOrders.push_back( "iphonehd" );
             resDirOrders.push_back( "iphone" );
-            
+			resDirOrders.push_back("Android");
             if ( true == IS_LANDSCAPE )
             {
                 glview->setDesignResolutionSize( 960, 640, ResolutionPolicy::NO_BORDER );
@@ -116,7 +117,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         else // non retina iPhone and Android devices with lower resolutions
         {
             resDirOrders.push_back( "iphone" );
-            
+			resDirOrders.push_back("Android");
             if ( true == IS_LANDSCAPE )
             {
                 glview->setDesignResolutionSize( 480, 320, ResolutionPolicy::NO_BORDER );

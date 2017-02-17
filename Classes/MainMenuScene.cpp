@@ -43,18 +43,18 @@ bool MainMenuScene::init()
     
     auto playItem = MenuItemImage::create( "Android/PlayGame.png", "Android/Pressed.png", CC_CALLBACK_1( MainMenuScene::GoToGameScene, this ) );
     playItem->setPosition( Point( visibleSize.width / 4.5 + origin.x, visibleSize.height / 5 + origin.y ) );
-	//this->addChild(playItem);
+
 
     auto menu = Menu::create( playItem, NULL );
     menu->setPosition( Point::ZERO );
     this->addChild( menu );
 
-	auto QuitItem = MenuItemImage::create("QuitGame.png", "Pressed.png", CC_CALLBACK_1(MainMenuScene::menuCloseCallback, this));
-	QuitItem->setPosition(Point(visibleSize.width / 3.0 + origin.x, visibleSize.height / 5 + origin.y));
+	auto QuitItem = MenuItemImage::create("Android/QuitGame.png", "Android/Pressed.png", CC_CALLBACK_1(MainMenuScene::menuCloseCallback, this));
+	QuitItem->setPosition(Point(visibleSize.width / 1.4 + origin.x, visibleSize.height / 5 + origin.y));
 	
 	auto Quit = Menu::create(QuitItem, NULL);
 	Quit->setPosition(Point::ZERO);
-	//this->addChild(Quit);
+	this->addChild(Quit);
     
     return true;
 }
