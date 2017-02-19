@@ -35,7 +35,7 @@ bool GameOverScene::init()
     {
         return false;
     }
-    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -88,7 +88,61 @@ bool GameOverScene::init()
     this->addChild( highScoreLabel );
 
 	//SimpleAudioEngine::getInstance()->playEffect(death);
-	
+#else
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+
+	SimpleAudioEngine::getInstance()->playBackgroundMusic(GameOver);
+
+	auto backgroundSprite = Sprite::create("Win32/GameOver.png");
+	backgroundSprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+
+	this->addChild(backgroundSprite);
+
+	auto retryItem = MenuItemImage::create("Win32/Retry Button.png", "Win32/Retry Button Clicked.png", CC_CALLBACK_1(GameOverScene::GoToGameScene, this));
+	retryItem->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 4 * 3));
+
+	auto mainMenuItem = MenuItemImage::create("Win32/Menu Button.png", "Win32/Menu Button Clicked.png", CC_CALLBACK_1(GameOverScene::GoToMainMenuScene, this));
+	mainMenuItem->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 4));
+
+	auto menu = Menu::create(retryItem, mainMenuItem, NULL);
+	menu->setPosition(Point::ZERO);
+
+	this->addChild(menu);
+
+	UserDefault *def = UserDefault::getInstance();
+
+	auto highScore = def->getIntegerForKey("HIGHSCORE ", 0);
+
+	if (score > highScore)
+	{
+		highScore = score;
+
+		def->setIntegerForKey("HIGHSCORE ", highScore);
+	}
+
+	def->flush();
+
+	__String *tempScore = __String::createWithFormat("%i", score);
+
+	auto currentScore = LabelTTF::create(tempScore->getCString(), "fonts/Marker Felt.ttf", visibleSize.height * SCORE_FONT_SIZE);
+	currentScore->setPosition(Point(visibleSize.width * 0.25 + origin.x, visibleSize.height / 2 + origin.y));
+
+	this->addChild(currentScore);
+
+	__String *tempHighScore = __String::createWithFormat("%i", highScore);
+
+	auto highScoreLabel = LabelTTF::create(tempHighScore->getCString(), "fonts/Marker Felt.ttf", visibleSize.height * SCORE_FONT_SIZE);
+
+	highScoreLabel->setColor(Color3B::YELLOW);
+	highScoreLabel->setPosition(Point(visibleSize.width * 0.75 + origin.x, visibleSize.height / 2 + origin.y));
+
+	this->addChild(highScoreLabel);
+
+	//SimpleAudioEngine::getInstance()->playEffect(death);
+
+#endif
     
     return true;
 }
